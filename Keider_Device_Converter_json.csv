@@ -1,0 +1,4 @@
+﻿Hostname,device_type,ip
+test1,cisco_ios,10.10.1.1
+test2,cisco_ios,10.10.1.2
+test3,cisco_ios,10.10.1.3
