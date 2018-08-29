@@ -6,33 +6,38 @@ import json
 ###################################################################################################################
 
 
-
-
+ios = []
+nxos = []
 
 #Opens .csv and converts to list
-with open('Keider_Device_Converter_json.csv','r', encoding= 'utf-8') as csv_file:
+with open('device_inventory.csv','r', encoding= 'utf-8') as csv_file:
     csv_reader = csv.DictReader(csv_file)
     rows = list(csv_reader)
 
     for item in rows:
 
         del(item['\ufeffHostname'])#Deletes Hostname Fieldname
-        print(item)
+
+        if item['device_type'] == 'cisco_ios':
+            ios.append(item)
+
+        elif item['device_type'] == 'cisco_nxos':
+            nxos.append(item)
+
+        else:
+            print('Not Cisco Device it is:',item['device_type'])
 
 
+with open('device_ios.json', 'w') as f:
+    json.dump(ios, f, indent=2)
 
-with open('customer_device.json', 'w') as f:
-    json.dump(rows, f, indent=2)
-
-
-
-
+with open('device_nxos.json', 'w') as f:
+    json.dump(nxos, f, indent=2)
 
 
+print(ios)
 
-
-
-
+print(nxos)
 
 
 
